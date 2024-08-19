@@ -1,0 +1,84 @@
+body {
+    background-image: url("../../../assets/more-poker-sized-2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    user-select: none;
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+#container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 600px;
+}
+
+#container > div {
+    margin-bottom: 40px;
+}
+
+#general-config, #blackjack-config, #poker-config, #roullete-config {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#general-config input, option, select, #blackjack-config input, #poker-config input, #roullete-config input {
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 32px;
+}
+
+#title-room p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+input[type="text"], input[type="number"], input[type="checkbox"] {
+    font-size: 32px;
+}
+
+input[type="checkbox"] {
+    transform: scale(3);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#send-config {
+    padding: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+#send-config:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#send-config:active {
+    background-color: #388e3c;
+    transform: scale(1);
+}

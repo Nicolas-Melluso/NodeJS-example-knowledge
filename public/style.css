@@ -1,0 +1,50 @@
+/* style.css */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/004/775/601/non_2x/poker-table-illustration-isolated-poker-or-black-jack-table-with-green-carpet-realistic-casino-online-poker-table-element-gambling-room-concept-design-illustration-vector.jpg");
+    background-size: cover;
+}
+
+a {
+    text-decoration: none;
+}
+
+#container {
+    display: flex;
+    gap: 50px;
+}
+
+.select-role {
+    padding: 60px 80px;
+    font-size: 48px;
+    font-weight: bold;
+    
+    text-align: center;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: transform 0.2s;
+}
+
+#dealer {
+    background-color: black;
+    color: white;
+}
+
+#player {
+    background-color: red;
+    color: black;
+    text-shadow: 2px 2px 5px black;
+}
+
+.select-role:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px 10px rgba(255, 255, 255, 0.7);
+}

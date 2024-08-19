@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config Black Jack Noxus</title>
+    <link rel="stylesheet" href="../dealer/CSS/blackjack-room-config.css">
+</head>
+<body>
+    <div id="container">
+        <div id="general-config">
+            <div id="title-room">
+                <p>Title room</p> 
+                <input type="text" placeholder="Enter room title">
+            </div>
+        </div>
+        <div id="blackjack-config">
+            <div id="time">
+                <label for="time-select">Game time:</label>
+                <select id="time-select" name="time-select">
+                    <option value="10">10 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="60">1 hour</option>
+                </select>
+            </div>
+            <div id="min">
+                <label for="min-bet-select">Minimum bet:</label>
+                <select id="min-bet-select" name="min-bet-select">
+                    <option value="1">1</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                </select>
+            </div>
+            <div id="max">
+                <label for="max-bet-select">Maximum bet:</label>
+                <select id="max-bet-select" name="max-bet-select" disabled>
+                </select>
+            </div>
+        </div>
+        <div id="poker-config">
+            <div id="rounds">
+                <label for="rounds">Number of poker rounds:</label>
+                <input type="number" id="rounds" name="rounds" min="1" max="10">
+            </div>
+        </div>
+        <div id="roullete-config">
+            <div id="cheated">
+                <label for="cheated">Cheat enabled:</label>
+                <input type="checkbox" id="cheated" name="cheated">
+            </div>
+            <div id="set-config">
+                <button id="send-config"> Ready </button>
+            </div>
+        </div>
+    </div>
+    <script src="./JS/blackjack-config.js"></script>i
+</body>
+</html>
