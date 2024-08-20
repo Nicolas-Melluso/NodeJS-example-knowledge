@@ -1,7 +1,7 @@
 {
   "name": "nodejs-example-knowledge",
   "version": "1.0.0",
-  "description": "",
+  "description": "A game designed to combine 3 lucky games in 1",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
