@@ -82,3 +82,42 @@ input[type="checkbox"] {
     background-color: #388e3c;
     transform: scale(1);
 }
+
+/* Estilos para el modal */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Mantenerlo en la misma posición */
+            z-index: 1; /* Sobre todo el contenido */
+            left: 0;
+            top: 0;
+            width: 100%; /* Completa el ancho de la ventana */
+            height: 100%; /* Completa el alto de la ventana */
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+        }
+
+        /* Contenido del modal */
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto; /* Centrar verticalmente */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Ancho del modal */
+            max-width: 400px; /* Ancho máximo del modal */
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Botón de cerrar */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
