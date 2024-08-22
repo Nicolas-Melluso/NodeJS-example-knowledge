@@ -48,3 +48,29 @@ a {
     transform: scale(1.1);
     box-shadow: 0 0 25px 10px rgba(255, 255, 255, 0.7);
 }
+
+#myModal p {
+    font-size: 30px;
+    font-family: Impact;
+    font-style: bold;
+}
+
+#myModal #game-id {
+    font-size: 25px;
+    font-style: bold;
+    width: 70%;
+    height: 40px;
+}
+
+#myModal #search {
+    font-size: 25px;
+    cursor: pointer;
+    font-style: bold;
+    background-color: brown;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

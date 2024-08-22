@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timba Noxus</title>
     <link rel="stylesheet" href="style.css">   
+    <link rel="stylesheet" href="modal.css">
 </head>
 <body>
     <div id="container">
         <a href="blackjack/dealer/blackjack-room-config.html">
             <div id="dealer" class="select-role"> Dealer </div>
         </a>
-        <a href="blackjack/blackjack-player.html">
+        
             <div id="player" class="select-role"> Player </div>
-        </a>
+        
     </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p> Please enter the game id </p>
+            <input type="text" id="game-id" name="game-id">
+            <button type="submit" id="search">Search</button>
+        </div>
+    </div>
+    <script src="./index.js"></script>
 </body>
 </html>
