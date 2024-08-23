@@ -16,27 +16,21 @@ const server = app.listen(app.get('port'), () => {
 
 const io = SocketIO(server);
 
-// Array para almacenar los jugadores conectados
-let players = [];
+const players = []
 
-// Cuando un jugador se conecta
 io.on('connection', (socket) => {
-    console.log('Nuevo jugador conectado:', socket.id);
+    //io todos socket jugador
 
     // Asignar un ID único al jugador
-    players.push(socket.id);
-    socket.emit('assign_id', socket.id);
+    players.push(socket.id)
+    socket.emit('player-id', `Your id is ${socket.id}`);
 
-    // Enviar el estado inicial del juego al jugador conectado
-    socket.emit('update_game_state', { players });
-
-    // Notificar a todos los jugadores que hay un nuevo jugador
-    io.emit('player_connected', { players });
+    io.emit('player_connected', players);
 
     // Cuando un jugador se desconecta
     socket.on('disconnect', () => {
         console.log('Jugador desconectado:', socket.id);
-        players = players.filter(player => player !== socket.id);
-        io.emit('player_disconnected', { players });
+        io.emit('player_disconnected', socket.id);
     });
 });
+

@@ -1,0 +1,115 @@
+body {
+    background-image: url("../../../assets/more-poker-sized-2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    user-select: none; 
+}
+
+#deck {
+    position: absolute;
+    left: 12.5vw;
+    top: 30vh;
+    perspective: 1000px;
+}
+
+#deck p {
+    text-align: center;
+    margin-top: 50%;
+    user-select: none; 
+    font-size: 30px;
+    font-style: bold;
+    font-family: Impact;
+}
+
+#player-hand {
+    position: absolute;
+    right: 45vw;
+    top: 45vh;
+}
+
+#card-deck {
+    height: 150px;
+    width: 100px;
+    border: 3px solid black;
+    box-shadow: 5px 5px rgba(9, 16, 90, 0.7);
+    border-radius: 10px;
+    background-color: blue;
+    cursor: pointer;
+}
+
+
+.card {
+    height: 150px;
+    width: 100px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.card .number {
+    position: absolute;
+    left: 0.5vw;
+    top: 0.5vh;
+    font-family: Impact;
+    font-size: 50px;
+}
+
+.card .red {
+    position: absolute;
+    right: 0.5vw;
+    bottom: 0.5vh;
+    font-family: Impact;
+    font-size: 70px;
+    color: red;
+}
+
+.card .black {
+    position: absolute;
+    right: 0.5vw;
+    bottom: 0.5vh;
+    font-family: Impact;
+    font-size: 70px;
+    color: black;
+}
+
+.card-1 {
+    position: absolute;
+    left: 20vw;
+    top: 0;
+}
+
+.card-2 {
+    position: absolute;
+    left: 25vw;
+    top: 0;
+}
+
+.card-3 {
+    position: absolute;
+    left: 30vw;
+    top: 0;
+}
+
+.card-4 {
+    position: absolute;
+    left: 35vw;
+    top: 0;
+}
+
+.card-5 {
+    position: absolute;
+    left: 40vw;
+    top: 0;
+}
+
+.card-6 {
+    position: absolute;
+    left: 45vw;
+    top: 0;
+}
+
+.card-7 {
+    position: absolute;
+    left: 50vw;
+    top: 0;
+}

@@ -1,4 +1,5 @@
-document.getElementById('card-deck').addEventListener('click', function() {
+/* document.getElementById('card-deck').addEventListener('click', function() {
+    
     let number = JSON.parse(localStorage.getItem("card-serve"));
   
     if (number === null) {
@@ -26,3 +27,4 @@ document.getElementById('card-deck').addEventListener('click', function() {
 
     localStorage.setItem('card-serve', number+=1);
 });
+*/
