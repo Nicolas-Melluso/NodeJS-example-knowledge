@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="./CCS/black-jack-table.css">
 </head>
 <body>
-    <div id="player-hand">
+    <div id="players">
     </div>
-    <div id="game-info">
-        <p id="player-id">Player ID: </p>
-        <p id="connected-players">Connected Players: </p>
+    <div id="deck">
+        <div id="card-deck">
+            <p id="start">Waiting Players</p>
+        </div>   
     </div>
-
+    <div id="dealer-hand">
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./JS/socket.js"></script>
 </body>
