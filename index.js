@@ -24,8 +24,8 @@ let dealer = {
 };
 
 const game = {
-    gameType: "Blackjack",
-    gameStatus: "waiting players",
+    type: "Blackjack",
+    status: "waiting players",
     deck: createDeck(),
     dealer: dealer,
     players: players,
@@ -70,20 +70,20 @@ io.on('connection', (socket) => {
             id: socket.id,
             number: number,
             hand: [],
-            stack: 0
+            stack: 150
         }
 
         number++;
 
         players.push(newPlayer)
         io.emit('player_connected', players);
-        socket.emit('game-status', game.gameStatus);
+        socket.emit('game-status', game);
     }
 
     // Cuando el dealer inicia el juego
     socket.on('start_game', () => {
-        game.gameStatus = 'game started';
-        io.emit('game-status', 'game started');
+        game.status = 'game started';
+        io.emit('game-status', game);
     });
 
     // Cuando un jugador se desconecta

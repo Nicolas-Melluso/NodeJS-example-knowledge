@@ -83,3 +83,111 @@ body {
     width: 80%; /* Ancho del modal */
     min-width: 600px;
 }
+
+/*----------------------------------------------------------------------*/
+
+#poker-chips-container {
+    display: flex;
+    position: absolute;
+    bottom: 25vh;
+    left: 30vw;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.poker-chip {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.poker-chip::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.poker-chip::after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.poker-chip .notches {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: rotate(45deg);
+}
+
+.poker-chip .notch {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.chip-1 {
+    cursor: pointer;
+    background-color: #7fc2ba; /* Aqua */
+}
+
+.chip-5 {
+    cursor: pointer;
+    background-color: #ff0000; /* Rojo */
+}
+
+.chip-10 {
+    cursor: pointer;
+    background-color: #00cc66; /* Verde */
+}
+
+.chip-25 {
+    cursor: pointer;
+    background-color: #0066cc; /* Azul */
+}
+
+.chip-50 {
+    cursor: pointer;
+    background-color: #000000; /* Negro */
+}
+
+.chip-1 .notch {
+    background-color: #333333;
+}
+
+.chip-5 .notch {
+    background-color: #cc0000;
+}
+
+.chip-10 .notch {
+    background-color: #004999;
+}
+
+.chip-25 .notch {
+    background-color: #008f4f;
+}
+
+.chip-50 .notch {
+    background-color: #cc9900;
+}
