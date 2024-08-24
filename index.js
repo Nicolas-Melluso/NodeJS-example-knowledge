@@ -39,7 +39,8 @@ function createDeck() {
 
     for(let suit of suits) {
         for(value of values) {
-            deck.push({ suit, value });
+            deck.push({ suit, value, color: 'black'});
+            deck.push({ suit, value, color: 'red'});
         }
     }
     
@@ -55,6 +56,8 @@ function shuffle(deck) {
     return deck;
 }
 
+let number = 1;
+
 io.on('connection', (socket) => {
     //io todos socket jugador
     if (dealer.id === "") {
@@ -65,9 +68,12 @@ io.on('connection', (socket) => {
         // Asignar al player sus configuraciones iniciales
         let newPlayer = {
             id: socket.id,
+            number: number,
             hand: [],
             stack: 0
         }
+
+        number++;
 
         players.push(newPlayer)
         io.emit('player_connected', players);
@@ -77,7 +83,7 @@ io.on('connection', (socket) => {
     // Cuando el dealer inicia el juego
     socket.on('start_game', () => {
         game.gameStatus = 'game started';
-        io.emit('game-status', 'game-started');
+        io.emit('game-status', 'game started');
     });
 
     // Cuando un jugador se desconecta

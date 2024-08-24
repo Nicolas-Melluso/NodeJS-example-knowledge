@@ -71,44 +71,15 @@ body {
     color: black;
 }
 
-.card-1 {
-    position: absolute;
-    left: 20vw;
-    top: 0;
+#myModal {
+    font-size: 40px;
+    font-family: Impact;
+
 }
 
-.card-2 {
-    position: absolute;
-    left: 25vw;
-    top: 0;
-}
-
-.card-3 {
-    position: absolute;
-    left: 30vw;
-    top: 0;
-}
-
-.card-4 {
-    position: absolute;
-    left: 35vw;
-    top: 0;
-}
-
-.card-5 {
-    position: absolute;
-    left: 40vw;
-    top: 0;
-}
-
-.card-6 {
-    position: absolute;
-    left: 45vw;
-    top: 0;
-}
-
-.card-7 {
-    position: absolute;
-    left: 50vw;
-    top: 0;
+.modal-content {
+    justify-content: center;
+    text-align: center;
+    width: 80%; /* Ancho del modal */
+    min-width: 600px;
 }

@@ -5,17 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Jack Noxus - Player</title>
     <link rel="stylesheet" href="./CCS/black-jack-table.css">
+    <link rel="stylesheet" href="../../modal.css">
 </head>
 <body>
-    <div id="players">
+    
+    <div id="dealer-hand">
     </div>
+
     <div id="deck">
         <div id="card-deck">
             <p id="start">Waiting Players</p>
         </div>   
     </div>
-    <div id="dealer-hand">
+    
+    <div id="players">
     </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p> Waiting to Dealer start the GAME </p>
+        </div>
+    </div>
+    
     <script src="/socket.io/socket.io.js"></script>
     <script src="./JS/socket.js"></script>
 </body>

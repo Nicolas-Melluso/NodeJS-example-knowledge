@@ -1,3 +1,3 @@
 # NodeJS-example-knowledge
 
-estas desarrollando la parte de la configuracion del dealer, te falta conectar el JS con el boton ready, asegurate de que ningun campo quede vacio excepto el de cheated, luego con esa informacion podes crear en localStorage o MongoDB la configuracion de la sala, con esa configuracion de la sala podes ir al otro html para empezar la partida o mejor dicho a esperar que se conecten los jugadores, una vez conectados podes iniciar la partida y generar el sistema por turnos (con confirmaciones?)
+Ahora hay que hacer que empiece la partida, acomodar los lugares de los jugadores, poner visualmente las cartas para todos incluso el dealer y comenzar a pedir apuestas
