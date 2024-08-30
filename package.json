@@ -1,6 +1,7 @@
 {
   "name": "nodejs-example-knowledge",
   "version": "1.0.0",
+  "type": "module",
   "description": "A game designed to combine 3 lucky games in 1",
   "main": "index.js",
   "scripts": {
@@ -12,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
+    "mongoose": "^8.6.0",
     "socket.io": "^4.7.5"
   },
   "devDependencies": {

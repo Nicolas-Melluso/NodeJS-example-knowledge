@@ -1,3 +1,5 @@
-module.exports = routes = app => {
-    app.use("/api/v1/register", require("./register"));
+import { register } from '../controllers/user.controller.js';
+
+export default app => {
+    app.use("/api/v1/register", register);
 };
