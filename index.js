@@ -16,6 +16,12 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware para parsear JSON
+app.use(express.json());
+
+// Middleware para parsear datos urlencoded (si estás enviando datos en este formato)
+app.use(express.urlencoded({ extended: true }));
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(

@@ -1,8 +1,8 @@
-import { saveUser, getUsers } from '../services/user.service.js';
+import { saveUser } from '../services/user.service.js';
 
 export const register = async (req, res) => {
+    
     const { username, password } = req.body;
-    console.log(username, password);
 
     if (!username || !password) {
         return res.status(400).send({
