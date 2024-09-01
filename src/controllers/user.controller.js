@@ -1,8 +1,8 @@
 import { saveUser } from '../services/user.service.js';
 
 export const register = async (req, res) => {
-    
-    const { username, password } = req.body;
+        const { username, password } = req.body;
+    const image = req.file ? req.file : null;
 
     if (!username || !password) {
         return res.status(400).send({
@@ -11,7 +11,7 @@ export const register = async (req, res) => {
     }
 
     try {
-        const newUser = await saveUser(username, password);
+        const newUser = await saveUser(username, password, image);
 
         if (newUser) {
             return res.status(201).send({

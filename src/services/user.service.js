@@ -2,7 +2,7 @@ import userSchema from '../models/user.entity.js';
 import { encrypt } from '../utils/password.encrypt.js';
 import { connectDB, closeDB } from '../config/db/mongoose.config.js'
 
-export const saveUser = async (username, password) => {
+export const saveUser = async (username, password, image) => {
     try {
         await connectDB();
 
@@ -12,6 +12,11 @@ export const saveUser = async (username, password) => {
             username: username,
             password: hashedPassword
         });
+
+        if(image) {
+            const {filename} = image;
+            newUser.imgUrlProfile = filename;
+        }
 
         await newUser.save();
 

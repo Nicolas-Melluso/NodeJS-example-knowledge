@@ -9,7 +9,7 @@ import routes from "./src/routers/routes.js";
 
 const app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.APP_PORT || 3000);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Middleware para parsear datos urlencoded (si estás enviando datos en este formato)
+// Middleware para parsear datos de formularios
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
