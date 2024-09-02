@@ -9,11 +9,4 @@ const router = express.Router();
 
 router.post("/", upload.single('image'), register)//, auth, validate, multer, userController.viewUserFavorites); 
 
-router.get('/', () => {
-    console.log('Im a logger');
-    res.json({
-        message: "Hello world"
-    })
-})
-
 export default router;

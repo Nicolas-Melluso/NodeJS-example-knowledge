@@ -7,26 +7,49 @@
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
-    <div class="register-container">
+    <div id="register-container">
         <div id="profile">
             <div id="image">
-
+                <!-- Espacio para la imagen de perfil -->
             </div>
             <div id="starter-gift">
-
+                <h3>Welcome Gift</h3>
+                <p>Get free chips when you sign up!</p>
+                <!-- Otros beneficios por inscribirse -->
             </div>
         </div>
         <div id="form">
-            <h2>Register</h2>
-            <form id="registerForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <div id="registerDocument">
+                <h2>Register</h2>
+                <form id="registerForm">
+                    <p>I, <input type="text" id="username" name="username" placeholder="username" required>, 
+                        accept the conditions of this 
+                        document with all its rules and conditions in exchange for being able to play all game modes.
+                    </p>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+                    <p> By accepting these terms, you enable me to play the Blackjack, Poker, Roulette and "Spoil" game modes. </p>
 
-            <button type="submit">Register</button>
-        </form>
+                    <p> Blackjack is played in groups of up to 4 players without counting the dealer, during a time determined by the dealer 
+                        continuous hands will be played with the objective of beating the dealer in the combination of cards from 1 to 21, 
+                        the AS is worth 1 or 11 and the house must order up to 17 (inclusive) </p>
+
+                    <p> Poker is played Texas holdem style, 2 cards in hand and is played with a 5 card flop, the scales range from high card,
+                        1 pair, 2 pairs, three of a kind, straight, flush, full house, poker, straight flush and straight real </p>
+
+                    <p> Roulette is played by betting a number of chips on a color or number, betting on color gives your bet x2 and betting 
+                        on number gives you x4, simultaneous bets are accepted </p>
+
+                    <p> <label> "Spoil" </label> is the last game mode, you can only access it if you have a bankroll of +50M chips and on specific days and times, 
+                        the Dealers who open the table are professionals and <text id="red-letter"> the only possible bet is your account</text> </p>
+                    <p>Signed,
+                        <input type="password" id="password" name="password" placeholder="password" required>.
+                    </p>
+
+                    <div id="chip-seal">
+                        <div class="dashed-circle"> <p>REGISTER</p> </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

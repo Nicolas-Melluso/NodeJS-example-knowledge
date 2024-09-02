@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+#register-container {
+    display: flex;
+    height: 100vh;
+}
+
+#profile {
+    width: 50%;
+    background-color: #555454;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#image{
+	width: 47.5%;
+    height: 47.5%;
+    background-color: #ccc; /* Color de fondo temporal para la imagen */
+    background-image: url('../../assets/img/avatar-default.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#starter-gift {
+    width: 100%;
+    height: 50%;
+    background-color: #e6e6e6;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+#starter-gift h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+#starter-gift p {
+    font-size: 16px;
+    color: #666;
+}
+
+#form {
+    width: 50%;
+    background-color: #188238;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+#registerDocument {
+    height: 90vh;
+    width: 70%;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 2px solid #c1c1c1;
+    border-radius: 5px 50px 5px 5px;
+    box-shadow: -5px 8px 8px 0px rgba(0,0,0,0.5);
+    text-align: left;
+}
+
+#registerDocument h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#registerForm p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+}
+
+#registerForm label {
+    font-weight: bold;
+    color: #555;
+}
+
+#registerForm input {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+#red-letter {
+    color: rgb(184, 25, 25);
+    cursor: no-drop;
+    font-weight: bold;
+    text-shadow: -3px 3px 6px rgba(0,0,0,0.84);
+}
+
+#chip-seal {
+    margin-bottom: 35px;
+    margin-right: 13%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.dashed-circle {
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    width: 100px;
+    height: 100px;
+    border: 13px dashed white;
+    border-radius: 50%;
+    line-height: 100px;
+    text-align: center;
+    font-family: Helvetica;
+    cursor: pointer;
+}
+
+.dashed-circle p {
+    margin-top: 25px;
+    margin-left: -8px;
+    color: black;
+    font-weight: bold;
+}
+.dashed-circle:before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -16px;
+    border-radius: 50%;
+    background: rgb(142, 140, 140);
+    content: '';
+}
+
+
+
+.dashed-circle:after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 5px;
+    border: 3px dashed white;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.4);
+    content: '';
+}
+
+.dashed-circle:hover {
+    background: rgb(255, 0, 0, 0.4);
+}
