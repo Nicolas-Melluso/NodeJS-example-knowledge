@@ -1,10 +1,10 @@
 # NodeJS-example-knowledge
 
-• El proximo paso es lograr guardar opcionalmente una imagen, de no guardarse una imagen cuando se crea un usuario se usara una por defecto aleatoria del banco de imagenes
-
 • Crear index.html visual de la pagina del refactor, con modales y todas las cuestiones
 
-• Conectar el front y el back por medio de las llamadas a la api
+• Backend get users / validateIfUserExists / withErrorHandle front
+    
+• Crear boton para cambiar imagen, recopilar informacion de usuario al registrarse, enviar al login, generar validacion de campos, de usuarios y simular animacion de sello firmado
 
 • Investigar el login por el JWT
 
