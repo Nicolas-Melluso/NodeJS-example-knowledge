@@ -10,7 +10,15 @@
     <div id="register-container">
         <div id="profile">
             <div id="image">
-                <!-- Espacio para la imagen de perfil -->
+                    <h1 class="upload-icon">
+                      <i>+</i>
+                    </h1>
+                    <input
+                      class="file-uploader"
+                      type="file"
+                      onchange="upload()"
+                      accept="image/*"
+                    />
             </div>
             <div id="starter-gift">
                 <h3>Welcome Gift</h3>
@@ -40,7 +48,7 @@
                         on number gives you x4, simultaneous bets are accepted </p>
 
                     <p> <label> "Spoil" </label> is the last game mode, you can only access it if you have a bankroll of +50M chips and on specific days and times, 
-                        the Dealers who open the table are professionals and <text id="red-letter"> the only possible bet is your account</text> </p>
+                        the Dealers who open the table are professionals and <text class="red-letter"> the only possible bet is your account</text> </p>
                     <p>Signed,
                         <input type="password" id="password" name="password" placeholder="password" required>.
                     </p>

@@ -29,6 +29,7 @@ export const saveUser = async (username, password, image) => {
     }
 }
 
+// Función para obtener todos los usuarios (solo sus nombres de usuario)
 export const getUsers = async () => {
     try {
         const users = await userSchema.find({}, "username");
@@ -36,5 +37,19 @@ export const getUsers = async () => {
     } catch (error) {
         console.error("Error getting users:", error);
         throw new Error("Failed to get users");
+    }
+}
+
+// Función para buscar un usuario por su nombre de usuario
+export const findUserByUsername = async (username) => {
+    try {
+        await connectDB();
+        const user = await userSchema.findOne({ username: username }, "username");
+        return user;
+    } catch (error) {
+        console.error("Error finding user by username:", error);
+        throw new Error("Failed to find user by username");
+    } finally {
+        await closeDB();
     }
 }

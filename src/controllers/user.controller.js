@@ -1,7 +1,7 @@
-import { saveUser } from '../services/user.service.js';
+import { saveUser, findUserByUsername } from '../services/user.service.js';
 
 export const register = async (req, res) => {
-        const { username, password } = req.body;
+    const { username, password } = req.body;
     const image = req.file ? req.file : null;
 
     if (!username || !password) {
@@ -11,6 +11,14 @@ export const register = async (req, res) => {
     }
 
     try {
+        const existingUser = await findUserByUsername(username); // Función que busca si el usuario ya existe
+
+        if (existingUser) {
+            return res.status(409).send({ // 409 Conflict para indicar que ya existe
+                message: "Username is already taken"
+            });
+        }
+
         const newUser = await saveUser(username, password, image);
 
         if (newUser) {
