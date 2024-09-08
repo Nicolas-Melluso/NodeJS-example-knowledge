@@ -1,7 +1,7 @@
 import { saveUser, findUserByUsername } from '../services/user.service.js';
 
 export const register = async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, isNewPlayer } = req.body;
     const image = req.file ? req.file : null;
 
     if (!username || !password) {
@@ -19,7 +19,7 @@ export const register = async (req, res) => {
             });
         }
 
-        const newUser = await saveUser(username, password, image);
+        const newUser = await saveUser(username, password, isNewPlayer, image);
 
         if (newUser) {
             return res.status(201).send({
@@ -27,6 +27,7 @@ export const register = async (req, res) => {
                 user: {
                     id: newUser.id,
                     username,
+                    isNewPlayer,
                     password: newUser.password
                 }
             });
