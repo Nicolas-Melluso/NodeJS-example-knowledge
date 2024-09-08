@@ -29,6 +29,7 @@ btnRegister.addEventListener('click', (e) => {
 
         formData.append('username', username.value);
         formData.append('password', password.value);
+        formData.append('isNewPlayer', true);
 
         fetch('http://localhost:3000/api/v1/register', {
             method: 'POST',
