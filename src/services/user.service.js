@@ -10,7 +10,9 @@ export const saveUser = async (username, password, image) => {
 
         const newUser = new userSchema({
             username: username,
-            password: hashedPassword
+            password: hashedPassword,
+            isNewPlayer: true,
+            stack: 0,
         });
 
         if(image) {

@@ -1,7 +1,7 @@
 import { saveUser, findUserByUsername } from '../services/user.service.js';
 
 export const register = async (req, res) => {
-    const { username, password, isNewPlayer } = req.body;
+    const { username, password } = req.body;
     const image = req.file ? req.file : null;
 
     if (!username || !password) {
@@ -19,7 +19,7 @@ export const register = async (req, res) => {
             });
         }
 
-        const newUser = await saveUser(username, password, isNewPlayer, image);
+        const newUser = await saveUser(username, password, image);
 
         if (newUser) {
             return res.status(201).send({
@@ -27,12 +27,13 @@ export const register = async (req, res) => {
                 user: {
                     id: newUser.id,
                     username,
-                    isNewPlayer,
-                    password: newUser.password
+                    password: newUser.password,
+                    stack: 0,
                 }
             });
         }
     } catch (error) {
+        console.log(error);
         return res.status(500).send({
             message: "User cannot be saved"
         });
