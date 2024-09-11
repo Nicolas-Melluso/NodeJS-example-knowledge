@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation with Dialogue</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000000;
+      margin: 0;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .animation-container {
+      position: relative;
+      width: 1000px; /* Ajusta según sea necesario */
+      height: 1000px; /* Ajusta según sea necesario */
+    }
+
+    .frame {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+    .frame.show {
+      opacity: 1;
+    }
+
+    .dialogue-container {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+      width: auto;
+      max-width: 300px; /* Limitar el ancho máximo del diálogo */
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="animation-container">
+    <img src="../assets/img/animation-first-time/img-2.jpeg" alt="Image 1" class="frame">
+    <img src="../assets/img/animation-first-time/img-3.jpeg" alt="Image 2" class="frame">
+    <img src="../assets/img/animation-first-time/img-1.jpeg" alt="Image 3" class="frame">
+    <img src="../assets/img/animation-first-time/img-4.jpeg" alt="Image 4" class="frame">
+    <img src="../assets/img/animation-first-time/img-end.png" alt="Image 5" class="frame">
+    <div class="dialogue-container" id="dialogue-container"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
