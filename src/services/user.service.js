@@ -32,13 +32,22 @@ export const saveUser = async (username, password, image) => {
 }
 
 // Función para obtener todos los usuarios (solo sus nombres de usuario)
-export const getUsers = async () => {
+export const findAllUsers = async () => {
     try {
-        const users = await userSchema.find({}, "username");
-        return users;
+        await connectDB();
+        const users = await userSchema.find({});
+        return users.map((user) => {
+            return {
+                id: user._id,
+                username: user.username,
+                stack: user?.stack
+            }
+        });
     } catch (error) {
         console.error("Error getting users:", error);
         throw new Error("Failed to get users");
+    } finally {
+        await closeDB();
     }
 }
 

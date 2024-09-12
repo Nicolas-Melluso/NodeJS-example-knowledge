@@ -1,4 +1,4 @@
-import { saveUser, findUserByUsername } from '../services/user.service.js';
+import { saveUser, findUserByUsername, findAllUsers } from '../services/user.service.js';
 
 export const register = async (req, res) => {
     const { username, password } = req.body;
@@ -39,3 +39,14 @@ export const register = async (req, res) => {
         });
     }
 };
+
+export const getUsers = async (req, res) => {
+    try {
+        const users = await findAllUsers();
+        return res.status(200).send(users);
+    } catch (error) {
+        return res.status(500).send({
+            message: "Exist some error in our server, try later."
+        });
+    }
+}
