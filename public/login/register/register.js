@@ -82,6 +82,16 @@ function upload() {
 
 // Función para mostrar un modal de error
 function showErrorModal(message) {
-    // Aquí puedes implementar un modal para mostrar el mensaje de error
-    alert(message); // Por simplicidad, uso alert, pero puedes implementar un modal más elegante
+    const modal = document.getElementById("errorModal");
+    const modalMessage = document.getElementById("modalMessage");
+
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+
+    // Cuando el usuario haga clic en cualquier lugar fuera del modal, cierra el modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
