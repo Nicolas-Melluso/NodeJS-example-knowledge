@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
+    userId: { type: Number, required: false, alias: 'user_id' },
+    username: { type: String, required: true },
     password: { type: String, required: true },
-    isNewPlayer: { type: Boolean, required: false },
-    imgUrlProfile: { type: String, required: false },
+    enabled: { type: Boolean, default: true },
+    imgUrlProfile: { type: String, required: false, alias: 'img_url_profile' },
     stack: { type: Number, required: true },
+    level: { type: Number, required: false },
+    dealer: { type: Boolean, required: false },
+    accountsClaimed: [{ id: { type: mongoose.Schema.Types.ObjectId, required: true, alias: 'accounts_claimed' }}]
 });
 
 const User = mongoose.model('User', userSchema);

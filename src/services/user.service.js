@@ -1,8 +1,9 @@
+import mongoose from 'mongoose';
 import userSchema from '../models/user.entity.js';
 import { encrypt } from '../utils/password.encrypt.js';
 import { connectDB, closeDB } from '../config/db/mongoose.config.js'
 
-export const saveUser = async (username, password, image) => {
+export const createUser = async (username, password, image) => {
     try {
         await connectDB();
 
@@ -11,12 +12,13 @@ export const saveUser = async (username, password, image) => {
         const newUser = new userSchema({
             username: username,
             password: hashedPassword,
-            isNewPlayer: true,
-            stack: 0,
+            stack: 500,
+            level: 1,
+            accountsClaimed: [{}]
         });
 
         if(image) {
-            const {filename} = image;
+            const { filename } = image;
             newUser.imgUrlProfile = filename;
         }
 
@@ -35,14 +37,8 @@ export const saveUser = async (username, password, image) => {
 export const findAllUsers = async () => {
     try {
         await connectDB();
-        const users = await userSchema.find({});
-        return users.map((user) => {
-            return {
-                id: user._id,
-                username: user.username,
-                stack: user?.stack
-            }
-        });
+        const users = await userSchema.find({ enabled: true });
+        return users;
     } catch (error) {
         console.error("Error getting users:", error);
         throw new Error("Failed to get users");
@@ -55,11 +51,59 @@ export const findAllUsers = async () => {
 export const findUserByUsername = async (username) => {
     try {
         await connectDB();
-        const user = await userSchema.findOne({ username: username }, "username");
+        const user = await userSchema.findOne({ username: username });
         return user;
     } catch (error) {
         console.error("Error finding user by username:", error);
         throw new Error("Failed to find user by username");
+    } finally {
+        await closeDB();
+    }
+}
+
+// Función para buscar un usuario por su id
+export const findUserById = async (id) => {
+    try {
+        await connectDB();
+
+        const user = await userSchema.findById(id);
+        console.log(user);
+        
+
+        return user;
+    } catch (error) {
+        console.error("Error finding user by id:", error);
+        throw new Error("Failed to find user by id");
+    } finally {
+        await closeDB();
+    }
+}
+
+// Función para buscar un usuario por su id
+export const findAndUpdateUserById = async (id, updateRequest) => {
+    try {
+        await connectDB();
+        
+        const user = await userSchema.findByIdAndUpdate(id, updateRequest);
+
+        return user;
+    } catch (error) {
+        console.error("Error updating user by id:", error);
+        throw new Error("Failed updating user by id");
+    } finally {
+        await closeDB();
+    }
+}
+
+// Soft Delete user by ID
+export const softDeleteUserById = async (id) => {
+    try {
+        await connectDB();
+        const user = await userSchema.findByIdAndUpdate(id, { enabled: false });
+        return user;
+    } catch (error) {
+        console.error("Error updating user by id:", error);
+        throw new Error("Failed updating user by id");
     } finally {
         await closeDB();
     }

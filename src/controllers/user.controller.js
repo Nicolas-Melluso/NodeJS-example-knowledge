@@ -1,7 +1,9 @@
-import { saveUser, findUserByUsername, findAllUsers } from '../services/user.service.js';
+import mongoose from 'mongoose';
+import { createUser, findUserByUsername, findAllUsers, findUserById, softDeleteUserById, findAndUpdateUserById} from '../services/user.service.js';
 
-export const register = async (req, res) => {
+export const register = async (req, res) => {    
     const { username, password } = req.body;
+    
     const image = req.file ? req.file : null;
 
     if (!username || !password) {
@@ -19,17 +21,12 @@ export const register = async (req, res) => {
             });
         }
 
-        const newUser = await saveUser(username, password, image);
+        const newUser = await createUser(username, password, image);
 
         if (newUser) {
             return res.status(201).send({
                 message: "User has been created",
-                user: {
-                    id: newUser.id,
-                    username,
-                    password: newUser.password,
-                    stack: 0,
-                }
+                user: {...newUser.toObject()}
             });
         }
     } catch (error) {
@@ -40,7 +37,9 @@ export const register = async (req, res) => {
     }
 };
 
-export const getUsers = async (req, res) => {
+
+
+export const getAllUsers = async (req, res) => {
     try {
         const users = await findAllUsers();
         return res.status(200).send(users);
@@ -49,4 +48,118 @@ export const getUsers = async (req, res) => {
             message: "Exist some error in our server, try later."
         });
     }
+}
+
+export const getUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid user ID' });
+        }
+
+        const user = await findUserById(id);
+
+        if(!user) {
+            return res.status(404).send({
+                message: "User was not founded by id"
+            })
+        }
+
+        return res.status(200).send(user);
+    } catch (error) {
+        return res.status(500).send({
+            message: "Exist some error in our server, try later."
+        });
+    }
+}
+
+export const getUserByUsername = async (req, res) => {
+    try {
+        const { username } = req.params;
+
+        const user = await findUserByUsername(username);
+
+        if (!user) {
+            return res.status(404).send({
+                message: "User not found, review typing errors please"
+            })
+        }
+        
+        return res.status(200).send(user);
+    } catch (error) {
+        return res.status(500).send({
+            message: "Exist some error in our server, try later."
+        });
+    }
+}
+
+export const updateUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid user ID' });
+        }
+        
+        const {
+            username,
+            enabled,
+            stack,
+            level,
+            dealer,
+            accountsClaimed
+        } = req.body;
+
+
+
+        const updateData = {};
+        if (username !== undefined) updateData.username = username;
+        if (enabled !== undefined) updateData.enabled = enabled;
+        if (stack !== undefined) updateData.stack = stack;
+        if (level !== undefined) updateData.level = level;
+        if (dealer !== undefined) updateData.dealer = dealer;
+        if (accountsClaimed !== undefined) updateData.accountsClaimed = accountsClaimed;
+
+        const userUpdated = await findAndUpdateUserById(id, updateData, { new: true });
+
+        if (!userUpdated) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json(userUpdated);
+    } catch (error) {
+        console.error("Error updating user:", error);
+        res.status(500).json({ message: 'Internal server error', error: error.message });
+    }
+};
+
+export const deleteUserById = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+    }
+
+    try {
+        const userDeleted = await softDeleteUserById(id);
+        return res.status(200).send({ 
+            id: userDeleted.id,
+            username: userDeleted.username,
+            stack: userDeleted.stack
+        });
+    } catch (error) {
+        return res.status(500).send({
+            message: "Exist some error in our server, try later."
+        });
+    }
+}
+
+/* When a new user is login is updated the userId with the websocketId */
+export const assingWebSocketId = async (req, res) => {
+ //not yet but implement later
+}
+
+export const changePassword = async (req, res) => {
+    //implement later
 }
