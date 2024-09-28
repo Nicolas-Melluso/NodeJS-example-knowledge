@@ -14,7 +14,7 @@ export const createUser = async (username, password, image) => {
             password: hashedPassword,
             stack: 500,
             level: 1,
-            accountsClaimed: [{}]
+            accountsClaimed: []
         });
 
         if(image) {

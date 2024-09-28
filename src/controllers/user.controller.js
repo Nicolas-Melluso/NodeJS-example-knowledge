@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { createUser, findUserByUsername, findAllUsers, findUserById, softDeleteUserById, findAndUpdateUserById} from '../services/user.service.js';
+import { decrypt } from '../utils/password.encrypt.js';
 
 export const register = async (req, res) => {    
     const { username, password } = req.body;
@@ -29,6 +30,46 @@ export const register = async (req, res) => {
                 user: {...newUser.toObject()}
             });
         }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            message: "User cannot be saved"
+        });
+    }
+};
+
+export const login = async (req, res) => {    
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).send({
+            message: "Username and password are mandatory fields"
+        });
+    }
+
+    try {
+        const existingUser = await findUserByUsername(username); // Función que busca si el usuario ya existe
+
+        if (!existingUser) {
+            return res.status(409).send({ // 409 Conflict para indicar que ya existe
+                message: "Incorrect username"
+            });
+        }
+
+        const passwordCompared = await decrypt(password, existingUser.password);
+
+        if (passwordCompared) {
+            return res.status(200).send({
+                ...existingUser.toObject(),
+                accessAllowed: passwordCompared
+            }); 
+        } 
+
+        return res.status(403).send({
+            accessAllowed: passwordCompared
+        })
+        
+    
     } catch (error) {
         console.log(error);
         return res.status(500).send({
