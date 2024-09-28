@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { createUser, findUserByUsername, findAllUsers, findUserById, softDeleteUserById, findAndUpdateUserById} from '../services/user.service.js';
 import { decrypt } from '../utils/password.encrypt.js';
+import jwt from 'jsonwebtoken';
 
 export const register = async (req, res) => {    
     const { username, password } = req.body;
@@ -59,7 +60,10 @@ export const login = async (req, res) => {
         const passwordCompared = await decrypt(password, existingUser.password);
 
         if (passwordCompared) {
+            const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
             return res.status(200).send({
+                token,
                 ...existingUser.toObject(),
                 accessAllowed: passwordCompared
             }); 
