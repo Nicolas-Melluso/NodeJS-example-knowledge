@@ -2,13 +2,14 @@ import express from "express";
 import { authentication } from "../middlewares/authentication.js";
 import { validID } from "../middlewares/validIdMongoose.js";
 import { authorization } from "../middlewares/authorization.js";
-import { cacheMiddleware, cacheGetAllMiddleware } from "../middlewares/cacheMiddleware.js";
+import { cacheMiddleware } from "../middlewares/cacheMiddleware.js";
+import { createTable, getAllTables, getTableById, getTablesByCasino, updateTableByIdAndCasinoOwner, deleteTableById } from "../controllers/table.controller";
 
 const router = express.Router();
 
 router.post("/", authentication, authorization('owner'), createTable); //C
 
-router.get("/", cacheGetAllMiddleware, getAllTables); // R
+router.get("/", getAllTables); // R
 router.get("/:casino", getTablesByCasino); // R
 router.get("/table/:id", validID, cacheMiddleware, getTableById); // R
 
