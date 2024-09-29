@@ -29,7 +29,7 @@ btnRegister.addEventListener('click', (e) => {
 
         formData.append('username', username.value);
         formData.append('password', password.value);
-        formData.append('isNewPlayer', true);
+        formData.append('role', 'user');
 
         fetch('http://localhost:3000/api/v1/register', {
             method: 'POST',
@@ -44,7 +44,7 @@ btnRegister.addEventListener('click', (e) => {
         .then(data => {
             if (data.message === "User has been created") {
                 console.log('Registro exitoso:', data);
-                localStorage.set('stage', 'new register');
+                localStorage.setItem('stage', 'new register');
                 window.location.href = '../../map/index.html';
             }
         })
@@ -52,7 +52,8 @@ btnRegister.addEventListener('click', (e) => {
             if (error.message === "Username is already taken") {
                 showErrorModal("Username is already taken. Please choose another one.");
             } else {
-                showErrorModal("An error occurred while registering. Please try again later.");
+                showErrorModal(error.message)
+                //showErrorModal("An error occurred while registering. Please try again later.");
             }
         });
     }

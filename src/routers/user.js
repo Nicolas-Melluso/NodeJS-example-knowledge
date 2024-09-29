@@ -4,19 +4,17 @@ import { register, getAllUsers, getUserById, getUserByUsername, updateUserById, 
 import { authentication } from "../middlewares/authentication.js";
 import { validID } from "../middlewares/validIdMongoose.js";
 import { authorization } from "../middlewares/authorization.js";
+import { cacheMiddleware } from "../middlewares/cacheMiddleware.js";
 
 const router = express.Router();
 
-//const auth = require("../middlewares/auth").auth;
-//const validate = require("../middlewares/validator").validate;
-
 router.post("/", upload.single('image'), register); //C
 
-router.get("/", getAllUsers); //, auth, validate, multer, userController.viewUserFavorites);
-router.get("/id/:id", validID, getUserById); // R
+router.get("/", getAllUsers); // R
+router.get("/id/:id", validID, cacheMiddleware, getUserById); // R
 router.get("/username/:username", getUserByUsername); // R
 
-router.put("/:id", validID, authentication, updateUserById) //U
+router.put("/:id", validID, authentication, authorization('owner'), updateUserById) //U
 
 router.delete("/:id", validID, authorization('owner'), deleteUserById); //D
 

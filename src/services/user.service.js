@@ -67,8 +67,6 @@ export const findUserById = async (id) => {
         await connectDB();
 
         const user = await userSchema.findById(id);
-        console.log(user);
-        
 
         return user;
     } catch (error) {

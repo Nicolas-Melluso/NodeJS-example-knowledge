@@ -1,3 +1,4 @@
+import redisClient from '../config/redis/redis.js';
 import { createUser, findUserByUsername, findAllUsers, findUserById, softDeleteUserById, findAndUpdateUserById} from '../services/user.service.js';
 import { decrypt } from '../utils/password.encrypt.js';
 import jwt from 'jsonwebtoken';
@@ -98,23 +99,30 @@ export const getAllUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
     try {
-        const { id } = req.params;
-
-        const user = await findUserById(id);
-
-        if(!user) {
-            return res.status(404).send({
-                message: "User was not founded by id"
-            })
-        }
-
-        return res.status(200).send(user);
-    } catch (error) {
-        return res.status(500).send({
-            message: "Exist some error in our server, try later."
+      const { id } = req.params;
+  
+      const user = await findUserById(id);
+  
+      if (!user) {
+        return res.status(404).send({
+          message: "User was not found by id"
         });
+      }
+  
+      redisClient.set(id, JSON.stringify(user), 'EX', 3600, (err) => {
+        if (err) {
+          console.error('Redis set error:', err);
+        }
+      });   
+  
+      return res.status(200).json(user);
+    } catch (error) {
+      console.error('Error in getUserById:', error);
+      return res.status(500).send({
+        message: "There was an error on our server, please try again later."
+      });
     }
-}
+  };
 
 export const getUserByUsername = async (req, res) => {
     try {
