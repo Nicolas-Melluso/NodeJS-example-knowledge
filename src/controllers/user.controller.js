@@ -89,6 +89,13 @@ export const login = async (req, res) => {
 export const getAllUsers = async (req, res) => {
     try {
         const users = await findAllUsers();
+
+        redisClient.set('getAllUsers', JSON.stringify(users), 'EX', 1000, (err) => {
+            if (err) {
+              console.error('Redis set error:', err);
+            }
+          });  
+
         return res.status(200).send(users);
     } catch (error) {
         return res.status(500).send({
@@ -173,6 +180,8 @@ export const updateUserById = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
+        await client.del([id, 'getAllUsers']);
+
         res.status(200).json(userUpdated);
     } catch (error) {
         console.error("Error updating user:", error);
@@ -185,6 +194,15 @@ export const deleteUserById = async (req, res) => {
 
     try {
         const userDeleted = await softDeleteUserById(id);
+
+        if (!userDeleted) {
+            return res.status(404).send({
+                message: "User cannot be founded"
+            })
+        }
+        
+        await client.del([id, 'getAllUsers']);
+        
         return res.status(200).send({ 
             id: userDeleted.id,
             username: userDeleted.username,

@@ -16,3 +16,13 @@ export const cacheMiddleware = async (req, res, next) => {
     next();
   }
  };
+
+ export const cacheGetAllMiddleware = async (req, res, next) => {
+  const data = await redisClient.get('getAllUsers');
+
+  if (data) {
+    return res.status(200).json(JSON.parse(data));
+  } else {
+    next();
+  }
+}
