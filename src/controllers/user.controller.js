@@ -1,10 +1,9 @@
-import mongoose from 'mongoose';
 import { createUser, findUserByUsername, findAllUsers, findUserById, softDeleteUserById, findAndUpdateUserById} from '../services/user.service.js';
 import { decrypt } from '../utils/password.encrypt.js';
 import jwt from 'jsonwebtoken';
 
 export const register = async (req, res) => {    
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
     
     const image = req.file ? req.file : null;
 
@@ -23,7 +22,7 @@ export const register = async (req, res) => {
             });
         }
 
-        const newUser = await createUser(username, password, image);
+        const newUser = await createUser(username, password, role, image);
 
         if (newUser) {
             return res.status(201).send({
@@ -59,8 +58,10 @@ export const login = async (req, res) => {
 
         const passwordCompared = await decrypt(password, existingUser.password);
 
+        const role = existingUser.role; 
+
         if (passwordCompared) {
-            const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: "1h" });
+            const token = jwt.sign({ username, role }, process.env.JWT_SECRET, { expiresIn: "4h" });
 
             return res.status(200).send({
                 token,
@@ -98,10 +99,6 @@ export const getAllUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
     try {
         const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: 'Invalid user ID' });
-        }
 
         const user = await findUserById(id);
 
@@ -142,10 +139,6 @@ export const getUserByUsername = async (req, res) => {
 export const updateUserById = async (req, res) => {
     try {
         const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: 'Invalid user ID' });
-        }
         
         const {
             username,
@@ -153,10 +146,9 @@ export const updateUserById = async (req, res) => {
             stack,
             level,
             dealer,
-            accountsClaimed
+            accountsClaimed,
+            casinoOwner
         } = req.body;
-
-
 
         const updateData = {};
         if (username !== undefined) updateData.username = username;
@@ -165,6 +157,7 @@ export const updateUserById = async (req, res) => {
         if (level !== undefined) updateData.level = level;
         if (dealer !== undefined) updateData.dealer = dealer;
         if (accountsClaimed !== undefined) updateData.accountsClaimed = accountsClaimed;
+        if (casinoOwner !== undefined) updateData.casinoOwner = casinoOwner;
 
         const userUpdated = await findAndUpdateUserById(id, updateData, { new: true });
 
@@ -181,10 +174,6 @@ export const updateUserById = async (req, res) => {
 
 export const deleteUserById = async (req, res) => {
     const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ message: 'Invalid user ID' });
-    }
 
     try {
         const userDeleted = await softDeleteUserById(id);

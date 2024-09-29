@@ -13,4 +13,4 @@ export const authentication = (req, res, next) => {
     } catch (error) {
       return res.status(403).json({ message: "Token not valid" });
     }
-  }
+}

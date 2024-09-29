@@ -1,22 +1,22 @@
-import mongoose from 'mongoose';
 import userSchema from '../models/user.entity.js';
 import { encrypt } from '../utils/password.encrypt.js';
 import { connectDB, closeDB } from '../config/db/mongoose.config.js'
 
-export const createUser = async (username, password, image) => {
+export const createUser = async (username, password, role, image) => {
     try {
         await connectDB();
 
         const hashedPassword = await encrypt(password);
-
+        
         const newUser = new userSchema({
-            username: username,
+            username,
             password: hashedPassword,
             stack: 500,
             level: 1,
+            role,
             accountsClaimed: []
-        });
-
+        }); 
+        
         if(image) {
             const { filename } = image;
             newUser.imgUrlProfile = filename;

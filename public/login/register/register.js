@@ -44,6 +44,7 @@ btnRegister.addEventListener('click', (e) => {
         .then(data => {
             if (data.message === "User has been created") {
                 console.log('Registro exitoso:', data);
+                localStorage.set('stage', 'new register');
                 window.location.href = '../../map/index.html';
             }
         })

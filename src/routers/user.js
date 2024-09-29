@@ -2,6 +2,8 @@ import express from "express";
 import { upload } from "../middlewares/multer.js";
 import { register, getAllUsers, getUserById, getUserByUsername, updateUserById, deleteUserById } from "../controllers/user.controller.js";
 import { authentication } from "../middlewares/authentication.js";
+import { validID } from "../middlewares/validIdMongoose.js";
+import { authorization } from "../middlewares/authorization.js";
 
 const router = express.Router();
 
@@ -11,11 +13,11 @@ const router = express.Router();
 router.post("/", upload.single('image'), register); //C
 
 router.get("/", getAllUsers); //, auth, validate, multer, userController.viewUserFavorites);
-router.get("/id/:id", getUserById); // R
+router.get("/id/:id", validID, getUserById); // R
 router.get("/username/:username", getUserByUsername); // R
 
-router.put("/:id", authentication, updateUserById) //U
+router.put("/:id", validID, authentication, updateUserById) //U
 
-router.delete("/:id", deleteUserById); //D
+router.delete("/:id", validID, authorization('owner'), deleteUserById); //D
 
 export default router;
